@@ -30,7 +30,7 @@ function App() {
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page - 1 })}>prev</button>
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page + 1 })}>next</button>
       <div>{fetchType.type}</div>
-      {(data !== null && data !== 'Loading') && <List dataList={data.results} />}
+      {(data !== null && data !== 'Loading') && <List dataList={data.results} type={fetchType.type} />}
     </div>
   );
 }
