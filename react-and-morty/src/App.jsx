@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { mainUrls } from './api/dataRoutes';
+import List from './components/List';
 
 function App() {
   const [data, setData] = useState(null);
@@ -29,6 +30,7 @@ function App() {
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page - 1 })}>prev</button>
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page + 1 })}>next</button>
       <div>{fetchType.type}</div>
+      {(data !== null && data !== 'Loading') && <List dataList={data.results} />}
     </div>
   );
 }
