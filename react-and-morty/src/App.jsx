@@ -7,8 +7,9 @@ import List from './components/List';
 function App() {
   const [data, setData] = useState(null);
   const [fetchType, setFetchType] = useState({ type: 'characters', page: 1 });
-  useEffect(() => {
+  const [currentCard, setCurrentCard] = useState(null);
 
+  useEffect(() => {
     fetch(`${mainUrls[fetchType.type]}${fetchType.page}`)
       .then((res) => {
         return res.json();
@@ -17,13 +18,16 @@ function App() {
         setData(res);
       });
   }, [fetchType]);
+
   console.log(data);
+
   return (
     <div className="App">
       <button
         onClick={() => {
           const other = fetchType.type === 'characters' ? 'locations' : 'characters';
           setFetchType({ type: other, page: 1 });
+          setCurrentCard(null);
         }}
       >
         dik
@@ -31,13 +35,10 @@ function App() {
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page - 1 })}>prev</button>
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page + 1 })}>next</button>
       <div>{fetchType.type}</div>
-      {(data !== null && data !== 'Loading') && <List dataList={data.results} type={fetchType.type} />}
-      {data != null ? <div>
-        {
-          <Display data={data}></Display>
-        }
-      </div> : 'Loading'}
-
+      {currentCard !== null && <div>
+        <Display data={currentCard} type={fetchType.type}></Display>
+      </div>}
+      {(data !== null && data !== 'Loading') && <List dataList={data.results} type={fetchType.type} setCurrentCard={setCurrentCard} />}
     </div>
   );
 }

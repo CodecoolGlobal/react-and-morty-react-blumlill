@@ -1,34 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { mainUrls } from './api/dataRoutes';
+// import React, { useState } from 'react';
 
-const Display = (props) => {
-    
-    const [data, setData] = useState(props.data);
-    console.log(data.info.next);
+const Display = ({ data, type }) => {
+  const charater = type === 'characters';
 
-    return (
-        <div>
-            {data ? <div>
-                {
-                  data.results.map(element => {
-                        return <div>
-                            <p>
-                                {element.gender}
-                            </p>
-                            <p>
-                                {element.location.name}
-                            </p>
-                            <p>
-                                {element.origin.name}
-                            </p>
-                        </div>
-                    ;
-                    })
-                }
-            </div> : 'Loading'}
-    
-        </div>
-    );
+  // const [data, setData] = useState(props.data);
+  // console.log(data.info.next);
+
+  return (
+    <div className="modal">
+      <p>Name: {data.name}</p>
+      {charater ? <>
+        <p>Species: {data.species}</p>
+        <p>Gender: {data.gender}</p>
+        <p>Status: {data.status}</p>
+        <p>Location: {data.location.name}</p>
+        <p>Appeared in {data.episode.length} episodes</p>
+      </>
+        : <>
+          <p>Type: {data.type}</p>
+          <p>Dimension: {data.dimension}</p>
+          <p>Residents: {data.residents.length}</p>
+        </>
+      }
+    </div>
+  );
 };
 
 export default Display;
