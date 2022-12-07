@@ -4,18 +4,7 @@ import { mainUrls } from './api/dataRoutes';
 const Display = (props) => {
     
     const [data, setData] = useState(props.data);
-    console.log(data);
-    
-    /*const [fetchType, setFetchType] = useState({ type: 'characters', page: 1 });
-    useEffect(() => {
-        fetch(`${mainUrls[fetchType.type]}${fetchType.page}`)
-            .then((res) => {
-                return res.json();
-            })
-            .then((res) => {
-                setData(res);
-            });
-    }, [fetchType]);*/
+    console.log(data.info.next);
 
     return (
         <div>

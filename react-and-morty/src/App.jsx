@@ -33,7 +33,7 @@ function App() {
                 {
                    <Display data = {data}></Display>
                 }
-            </div> : 'wtf'}
+            </div> : 'Loading'}
     
     </div>
   );
