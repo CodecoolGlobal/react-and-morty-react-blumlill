@@ -3,6 +3,7 @@ import './App.css';
 import { mainUrls } from './api/dataRoutes';
 import Display from './Display';
 import List from './components/List';
+import Pages from './components/Pages';
 
 function App() {
   const [data, setData] = useState(null);
@@ -18,6 +19,10 @@ function App() {
         setData(res);
       });
   }, [fetchType]);
+
+  const onPageChange = (page) => {
+    setFetchType({ ...fetchType, page: page });
+  };
 
   console.log(data);
 
@@ -35,6 +40,7 @@ function App() {
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page - 1 })}>prev</button>
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page + 1 })}>next</button>
       <div>{fetchType.type}</div>
+      {(data !== null && data !== 'Loading') && <Pages pageCount={data.info.pages} currentPage={fetchType.page} onPageChange={onPageChange} />}
       {currentCard !== null && <div>
         <Display data={currentCard} type={fetchType.type}></Display>
       </div>}
