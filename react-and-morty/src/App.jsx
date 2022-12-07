@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { mainUrls } from './api/dataRoutes';
 import List from './components/List';
+import Logo from './components/Logo';
+import Buttons from './components/Buttons';
+import About from './components/About';
 
 function App() {
   const [data, setData] = useState(null);
@@ -19,6 +22,9 @@ function App() {
   console.log(data);
   return (
     <div className="App">
+      <Logo />
+      <Buttons />
+      <About />
       <button
         onClick={() => {
           const other = fetchType.type === 'characters' ? 'locations' : 'characters';
@@ -30,7 +36,7 @@ function App() {
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page - 1 })}>prev</button>
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page + 1 })}>next</button>
       <div>{fetchType.type}</div>
-      {(data !== null && data !== 'Loading') && <List dataList={data.results} type={fetchType.type} />}
+      {data !== null && data !== 'Loading' && <List dataList={data.results} type={fetchType.type} />}
     </div>
   );
 }

@@ -1,0 +1,37 @@
+@font-face {
+  font-family: RickAndMorty;
+  src: url(/src/get_schwifty.ttf);
+}
+
+.buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(81, 46, 95); /*buttons*/
+  padding: 20px;
+}
+
+.buttons > button {
+  font-family: RickAndMorty;
+  color: rgb(175, 255, 70);
+  background-color: rgb(0, 153, 140);
+  font-size: 45px;
+  padding: 25px;
+  width: 400px;
+  border-radius: 20px;
+  margin-right: 30px;
+  margin-left: 30px;
+  /* -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(0, 153, 140); */
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.801);
+  -webkit-text-stroke: 1px rgb(14, 37, 36);
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.637);
+  border: solid 1px;
+}
+.buttons > button:hover {
+  box-shadow: 5px 5px 5px rgb(121, 179, 13);
+  text-shadow: 4px 4px 4px rgba(206, 209, 26, 0.637);
+  background-color: rgba(1, 204, 187, 0.767);
+  cursor: pointer;
+}

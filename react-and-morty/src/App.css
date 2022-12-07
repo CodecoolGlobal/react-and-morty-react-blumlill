@@ -1,0 +1,8 @@
+@font-face {
+  font-family: RickAndMorty;
+  src: url(get_schwifty.ttf);
+}
+
+body {
+  font-family: RickAndMorty;
+}
