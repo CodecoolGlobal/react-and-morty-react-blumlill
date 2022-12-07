@@ -14,9 +14,11 @@ function App() {
   const [fetchType, setFetchType] = useState({ type: 'characters', page: 1 });
   const [currentCard, setCurrentCard] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [infinite, setInfinite] = useState(false);
   const last = useRef(null);
 
   useEffect(() => {
+    console.log('Test2');
     if (!loading) {
       document.addEventListener('scroll', scrollCheck);
       return () => document.removeEventListener('scroll', scrollCheck);
@@ -25,15 +27,7 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${mainUrls[fetchType.type]}${fetchType.page}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setResults(res.results);
-        setInfo(res.info);
-        setLoading(false);
-      });
+    fetchData();
   }, [fetchType]);
 
   const onPageChange = (page) => {
@@ -41,12 +35,31 @@ function App() {
   };
 
   console.log(results);
+  console.log(loading);
 
   function scrollCheck() {
-    if (last.current.getBoundingClientRect().y < window.innerHeight) {
+    // console.log(last.current.getBoundingClientRect().y < window.innerHeight);
+    // console.log(last.current.getBoundingClientRect().y);
+    // console.log(window.innerHeight);
+    if (last.current.getBoundingClientRect().y - 50 < window.innerHeight) {
       console.log('Yes');
       setLoading(true);
+      setFetchType({ ...fetchType, page: fetchType.page + 1 });
+      fetchData();
     }
+  }
+
+  function fetchData() {
+    fetch(`${mainUrls[fetchType.type]}${fetchType.page}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        const newResults = infinite ? [...results, ...res.results] : res.results;
+        setResults(newResults);
+        setInfo(res.info);
+        setLoading(false);
+      });
   }
 
   return (
@@ -63,6 +76,7 @@ function App() {
       >
         dik
       </button>
+      <input type="checkbox" onChange={() => setInfinite(!infinite)} checked={infinite} />
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page - 1 })}>prev</button>
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page + 1 })}>next</button>
       <div>{fetchType.type}</div>
@@ -74,13 +88,6 @@ function App() {
       )}
       {results !== null && <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard} />}
       <div ref={last}></div>
-      <button
-        onClick={() => {
-          console.log(last.current.getBoundingClientRect());
-        }}
-      >
-        Test
-      </button>
     </div>
   );
 }
