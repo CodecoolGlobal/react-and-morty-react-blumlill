@@ -1,6 +1,5 @@
 export default function Pages({ pageCount, currentPage, onPageChange }) {
   const pagesToDisplay = [currentPage];
-  console.log("First " + pagesToDisplay);
   if (currentPage > 1) {
     pagesToDisplay.unshift(currentPage - 1);
   }
@@ -13,14 +12,12 @@ export default function Pages({ pageCount, currentPage, onPageChange }) {
   if (currentPage < pageCount - 1) {
     pagesToDisplay.push(currentPage + 2);
   }
-  console.log("Second " + pagesToDisplay);
   while (pagesToDisplay.length < 5) {
     if (pagesToDisplay.includes(1)) {
       pagesToDisplay.push(pagesToDisplay[pagesToDisplay.length - 1] + 1);
     } else if (pagesToDisplay.includes(pageCount)) {
       pagesToDisplay.unshift(pagesToDisplay[0] - 1);
     }
-    console.log("Third " + pagesToDisplay);
   }
   return (
     <div className="pages">
