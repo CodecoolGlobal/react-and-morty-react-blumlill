@@ -43,6 +43,10 @@ function App() {
   }
 
   function fetchData() {
+    if (fetchType.type === null) {
+      setLoading(false);
+      return;
+    }
     fetch(`${mainUrls[fetchType.type]}${fetchType.page}`)
       .then((res) => {
         return res.json();
@@ -77,7 +81,7 @@ function App() {
   return (
     <div className="App">
       <Logo small={null !== results} />
-      <Buttons locations={locClicked} characters={charClicked} />
+      <Buttons locations={locClicked} characters={charClicked} fetchtype={fetchType} />
       <About hidden={null !== results} />
       <InfiniteScroll
         setInfinite={setInfinite}
@@ -87,7 +91,7 @@ function App() {
         infinite={infinite}
         results={results}
       />
-      <div>{fetchType.type}</div>
+
       <div ref={top}></div>
       {!infinite && info !== null && (
         <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} />
@@ -97,7 +101,9 @@ function App() {
           <Display data={currentCard} type={fetchType.type} visible={visible} setVisible={setVisible}></Display>
         </div>
       )}
-      {results !== null && <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard} />}
+      {results !== null && (
+        <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard} setVisible={setVisible} />
+      )}
       {!infinite && info !== null && (
         <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} scrollTo={top.current} />
       )}
