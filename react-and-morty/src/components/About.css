@@ -1,0 +1,23 @@
+.about {
+  background-color: rgb(118, 68, 138); /*list/about*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  padding: 20px;
+}
+.about > div > p {
+  color: rgb(5, 5, 0);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  font-size: 21px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.32);
+}
+.about > div {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  background-color: rgba(162, 211, 28);
+  padding: 20px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.601);
+}

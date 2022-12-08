@@ -3,6 +3,9 @@ import './App.css';
 import { mainUrls } from './api/dataRoutes';
 import Display from './Display';
 import List from './components/List';
+import Logo from './components/Logo';
+import Buttons from './components/Buttons';
+import About from './components/About';
 import Pages from './components/Pages';
 
 function App() {
@@ -58,6 +61,9 @@ function App() {
 
   return (
     <div className="App">
+      <Logo />
+      <Buttons />
+      <About />
       <button
         onClick={() => {
           const other = fetchType.type === 'characters' ? 'locations' : 'characters';

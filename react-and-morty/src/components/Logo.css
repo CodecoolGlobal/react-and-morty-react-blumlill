@@ -1,0 +1,15 @@
+.logo {
+  background-color: rgb(118, 68, 138); /*logo*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo > a > img {
+  width: 550px;
+  filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.678));
+}
+
+.logo > a > img:hover {
+  filter: drop-shadow(6px 6px 6px rgba(201, 238, 38, 0.767));
+}
