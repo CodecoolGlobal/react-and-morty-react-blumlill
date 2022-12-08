@@ -13,3 +13,7 @@
 .logo > a > img:hover {
   filter: drop-shadow(6px 6px 6px rgba(201, 238, 38, 0.767));
 }
+
+.smaller {
+  width: 300px !important;
+}

@@ -7,14 +7,16 @@ import Logo from './components/Logo';
 import Buttons from './components/Buttons';
 import About from './components/About';
 import Pages from './components/Pages';
+import InfiniteScroll from './components/InfiniteScroll';
 
 function App() {
   const [info, setInfo] = useState(null);
   const [results, setResults] = useState(null);
-  const [fetchType, setFetchType] = useState({ type: 'characters', page: 1 });
+  const [fetchType, setFetchType] = useState({ type: null, page: null });
   const [currentCard, setCurrentCard] = useState(null);
   const [loading, setLoading] = useState(false);
   const [infinite, setInfinite] = useState(false);
+  const [visible, setVisible] = useState(false);
   const top = useRef(null);
   const last = useRef(null);
 
@@ -33,8 +35,6 @@ function App() {
   function onPageChange(page) {
     setFetchType({ ...fetchType, page: page });
   }
-
-  console.log(results);
 
   function infiniteScroll() {
     if (fetchType.page !== info.pages && last.current.getBoundingClientRect().y - 50 < window.innerHeight) {
@@ -60,32 +60,33 @@ function App() {
       });
   }
 
+  const locClicked = () => {
+    setFetchType({ type: 'locations', page: 1 });
+    setResults([]);
+    setCurrentCard(null);
+    console.log('locClicked');
+  };
+
+  const charClicked = () => {
+    setFetchType({ type: 'characters', page: 1 });
+    setResults([]);
+    setCurrentCard(null);
+    console.log('charClicked');
+  };
+
   return (
     <div className="App">
-      <Logo />
-      <Buttons />
-      <About />
-      <button
-        onClick={() => {
-          const other = fetchType.type === 'characters' ? 'locations' : 'characters';
-          setFetchType({ type: other, page: 1 });
-          setResults([]);
-          setCurrentCard(null);
-        }}
-      >
-        dik
-      </button>
-      <input
-        type="checkbox"
-        onChange={() => {
-          setInfinite(!infinite);
-          setResults([]);
-          setFetchType({ ...fetchType, page: 1 });
-        }}
-        checked={infinite}
+      <Logo small={null !== results} />
+      <Buttons locations={locClicked} characters={charClicked} />
+      <About hidden={null !== results} />
+      <InfiniteScroll
+        setInfinite={setInfinite}
+        setResults={setResults}
+        setFetchType={setFetchType}
+        fetchType={fetchType}
+        infinite={infinite}
+        results={results}
       />
-      <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page - 1 })}>prev</button>
-      <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page + 1 })}>next</button>
       <div>{fetchType.type}</div>
       <div ref={top}></div>
       {!infinite && info !== null && (
@@ -93,7 +94,7 @@ function App() {
       )}
       {currentCard !== null && (
         <div>
-          <Display data={currentCard} type={fetchType.type}></Display>
+          <Display data={currentCard} type={fetchType.type} visible={visible} setVisible={setVisible}></Display>
         </div>
       )}
       {results !== null && <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard} />}

@@ -1,8 +1,8 @@
 import './About.css';
 
-const About = () => {
+const About = (props) => {
   return (
-    <div className="about">
+    <div className={props.hidden ? 'hidden' : 'about'}>
       <div>
         <p>Greetings, fellow Rick and Morty fan!</p>
 
