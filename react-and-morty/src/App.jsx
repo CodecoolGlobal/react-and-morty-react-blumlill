@@ -17,6 +17,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [infinite, setInfinite] = useState(false);
   const [visible, setVisible] = useState(false);
+  const top = useRef(null);
   const last = useRef(null);
 
   useEffect(() => {
@@ -87,6 +88,7 @@ function App() {
         results={results}
       />
       <div>{fetchType.type}</div>
+      <div ref={top}></div>
       {!infinite && info !== null && (
         <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} />
       )}
@@ -95,7 +97,10 @@ function App() {
           <Display data={currentCard} type={fetchType.type} visible={visible} setVisible={setVisible}></Display>
         </div>
       )}
-      {results !== null && <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard}  setVisible={setVisible}/>}
+      {results !== null && <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard} />}
+      {!infinite && info !== null && (
+        <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} scrollTo={top.current} />
+      )}
       <div ref={last}></div>
     </div>
   );
