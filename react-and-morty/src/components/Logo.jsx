@@ -1,10 +1,15 @@
 import './Logo.css';
 
-const Logo = () => {
+const Logo = (props) => {
   return (
     <div className="logo">
       <a href="https://www.youtube.com/watch?v=82F25MrlC9c">
-        <img src="../images/rick-and-morty-31013.png" alt="Rick and Morty logo" />
+        <img
+          className={props.small ? 'smaller' : ''}
+          src="../images/rick-and-morty-31013.png"
+          alt="Rick and Morty logo"
+        />
+        {console.log('img shall be smaller: ' + props.small)}
       </a>
     </div>
   );
