@@ -76,7 +76,7 @@
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.637);
 }
 
-.page-number:hover:not(:disabled) {
+.page-number:hover:not(.active) {
   text-shadow: 4px 4px 4px rgba(206, 209, 26, 0.637);
   /* background-color: rgba(1, 204, 187, 0.767); */
   cursor: pointer;

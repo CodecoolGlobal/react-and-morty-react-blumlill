@@ -1,12 +1,13 @@
-import "./Pages.css";
+import './Pages.css';
 
 export default function Pages({ pageCount, currentPage, onPageChange, scrollTo }) {
-
   function pageTurn(page) {
-    onPageChange(page);
-    if (scrollTo) {
-      const distanceY = scrollTo.getBoundingClientRect().y;
-      window.scrollBy({ top: distanceY, behavior: 'smooth' });
+    if (page !== currentPage) {
+      onPageChange(page);
+      if (scrollTo) {
+        const distanceY = scrollTo.getBoundingClientRect().y;
+        window.scrollBy({ top: distanceY, behavior: 'smooth' });
+      }
     }
   }
 
@@ -34,41 +35,40 @@ export default function Pages({ pageCount, currentPage, onPageChange, scrollTo }
     <div className="pages">
       <div className="button-box">
         <div>
-          <button className="page-button"
-            onClick={() => pageTurn(1)}
-            disabled={currentPage === 1}>
+          <button className="page-button" onClick={() => pageTurn(1)} disabled={currentPage === 1}>
             <img src="../images/first.svg" alt="first page" />
           </button>
         </div>
         <div>
-          <button className="page-button"
-            onClick={() => pageTurn(currentPage - 1)}
-            disabled={currentPage === 1}>
+          <button className="page-button" onClick={() => pageTurn(currentPage - 1)} disabled={currentPage === 1}>
             <img src="../images/prev.svg" alt="first page" />
           </button>
         </div>
         <div className="number-box">
-          {pagesToDisplay.map(page => {
-            return <div
-              key={page}
-              className={page === currentPage ? "page-number active" : "page-number"}
-              onClick={() => pageTurn(page)}
-              disabled={page === currentPage}>
-              {page}
-            </div>;
+          {pagesToDisplay.map((page) => {
+            return (
+              <div
+                key={page}
+                className={page === currentPage ? 'page-number active' : 'page-number'}
+                onClick={() => pageTurn(page)}
+                disabled={page === currentPage}
+              >
+                {page}
+              </div>
+            );
           })}
         </div>
         <div>
-          <button className="page-button"
+          <button
+            className="page-button"
             onClick={() => pageTurn(currentPage + 1)}
-            disabled={currentPage === pageCount}>
+            disabled={currentPage === pageCount}
+          >
             <img src="../images/next.svg" alt="first page" />
           </button>
         </div>
         <div>
-          <button className="page-button"
-            onClick={() => pageTurn(pageCount)}
-            disabled={currentPage === pageCount}>
+          <button className="page-button" onClick={() => pageTurn(pageCount)} disabled={currentPage === pageCount}>
             <img src="../images/last.svg" alt="first page" />
           </button>
         </div>
