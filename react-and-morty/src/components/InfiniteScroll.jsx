@@ -2,9 +2,9 @@ import './InfiniteScroll.css';
 
 const InfiniteScroll = (props) => {
   return (
-    <div className={null === props.results ? 'hidden' : ''}>
-      <span>Infinite scrolling</span>
-      <div className='toggle'>
+    <div className={null === props.results ? 'hidden inf-scroll' : 'inf-scroll'}>
+      <span>s c r o l l i n g: </span>
+      <label className="toggle">
         <input
           type="checkbox"
           onChange={() => {
@@ -14,8 +14,8 @@ const InfiniteScroll = (props) => {
           }}
           checked={props.infinite}
         />
-        <span className='slider'></span>
-      </div>
+        <span className="slider"></span>
+      </label>
     </div>
   );
 };

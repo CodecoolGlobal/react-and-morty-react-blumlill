@@ -92,6 +92,7 @@ function App() {
       {!infinite && info !== null && (
         <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} />
       )}
+      {infinite && <div className="replacer"></div>}
       {currentCard !== null && (
         <div>
           <Display data={currentCard} type={fetchType.type} visible={visible} setVisible={setVisible}></Display>

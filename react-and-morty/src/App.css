@@ -10,3 +10,8 @@ body {
 .hidden {
   display: none !important;
 }
+
+.replacer {
+  height: 110px;
+  background-color: rgb(81, 46, 95);
+}
