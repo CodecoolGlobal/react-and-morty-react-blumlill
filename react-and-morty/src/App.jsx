@@ -16,6 +16,7 @@ function App() {
   const [currentCard, setCurrentCard] = useState(null);
   const [loading, setLoading] = useState(false);
   const [infinite, setInfinite] = useState(false);
+  const [visible, setVisible] = useState(false);
   const last = useRef(null);
 
   useEffect(() => {
@@ -91,10 +92,10 @@ function App() {
       )}
       {currentCard !== null && (
         <div>
-          <Display data={currentCard} type={fetchType.type}></Display>
+          <Display data={currentCard} type={fetchType.type} visible={visible} setVisible={setVisible}></Display>
         </div>
       )}
-      {results !== null && <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard} />}
+      {results !== null && <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard}  setVisible={setVisible}/>}
       <div ref={last}></div>
     </div>
   );
