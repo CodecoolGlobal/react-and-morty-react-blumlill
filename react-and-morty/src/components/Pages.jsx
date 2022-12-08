@@ -1,4 +1,13 @@
-export default function Pages({ pageCount, currentPage, onPageChange }) {
+export default function Pages({ pageCount, currentPage, onPageChange, scrollTo }) {
+
+  function pageTurn(page) {
+    onPageChange(page);
+    if (scrollTo) {
+      const distanceY = scrollTo.getBoundingClientRect().y;
+      window.scrollBy({ top: distanceY, behavior: 'smooth' });
+    }
+  }
+
   const pagesToDisplay = [currentPage];
   if (currentPage > 1) {
     pagesToDisplay.unshift(currentPage - 1);
@@ -23,24 +32,24 @@ export default function Pages({ pageCount, currentPage, onPageChange }) {
     <div className="pages">
       Current:{currentPage}
       <button
-        onClick={() => onPageChange(1)}
+        onClick={() => pageTurn(1)}
         disabled={currentPage === 1}>
         {'|<'}
       </button>
       <button
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => pageTurn(currentPage - 1)}
         disabled={currentPage === 1}>
         {'<'}
       </button>
       {pagesToDisplay.map(page => {
-        return <button key={page} className={page === currentPage ? "active" : ""} onClick={() => onPageChange(page)}>{page}</button>;
+        return <button key={page} className={page === currentPage ? "active" : ""} onClick={() => pageTurn(page)}>{page}</button>;
       })}
       <button
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() => pageTurn(currentPage + 1)}
         disabled={currentPage === pageCount}>
         {'>'}
       </button>
-      <button onClick={() => onPageChange(pageCount)}
+      <button onClick={() => pageTurn(pageCount)}
         disabled={currentPage === pageCount}>
         {'>|'}
       </button>

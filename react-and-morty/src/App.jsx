@@ -15,6 +15,7 @@ function App() {
   const [currentCard, setCurrentCard] = useState(null);
   const [loading, setLoading] = useState(false);
   const [infinite, setInfinite] = useState(false);
+  const top = useRef(null);
   const last = useRef(null);
 
   useEffect(() => {
@@ -86,6 +87,7 @@ function App() {
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page - 1 })}>prev</button>
       <button onClick={() => setFetchType({ type: fetchType.type, page: fetchType.page + 1 })}>next</button>
       <div>{fetchType.type}</div>
+      <div ref={top}></div>
       {!infinite && info !== null && (
         <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} />
       )}
@@ -95,6 +97,9 @@ function App() {
         </div>
       )}
       {results !== null && <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard} />}
+      {!infinite && info !== null && (
+        <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} scrollTo={top.current} />
+      )}
       <div ref={last}></div>
     </div>
   );
