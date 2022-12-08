@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 import { mainUrls } from './api/dataRoutes';
-import Display from './Display';
+import Display from './components/Display';
 import List from './components/List';
 import Logo from './components/Logo';
 import Buttons from './components/Buttons';
@@ -64,14 +64,14 @@ function App() {
     setFetchType({ type: 'locations', page: 1 });
     setResults([]);
     setCurrentCard(null);
-    console.log('locClicked');
+    console.log(fetchType);
   };
 
   const charClicked = () => {
     setFetchType({ type: 'characters', page: 1 });
     setResults([]);
-    setCurrentCard(null);
-    console.log('charClicked');
+    setCurrentCard(null); 
+    console.log(fetchType);
   };
 
   return (
@@ -97,7 +97,7 @@ function App() {
           <Display data={currentCard} type={fetchType.type} visible={visible} setVisible={setVisible}></Display>
         </div>
       )}
-      {results !== null && <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard} />}
+      {results !== null && <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard}  setVisible={setVisible}/>}
       {!infinite && info !== null && (
         <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} scrollTo={top.current} />
       )}

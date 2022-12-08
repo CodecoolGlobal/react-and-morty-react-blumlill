@@ -12,7 +12,7 @@ const Buttons = (props) => {
           charClicked();
           setClicked({ locations: false, characters: true });
         }}
-        className="characters"
+        className="characters" 
         type="submit"
         disabled={clicked.characters}
       >

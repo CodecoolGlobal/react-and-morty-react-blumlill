@@ -14,6 +14,7 @@ const Display = ({ data, type, visible, setVisible }) => {
           <p>Name: {data.name}</p>
           {charater ? ( 
             <>
+            <img src={data.image} style={{width:'30%'}} alt="" />
               <p>Species: {data.species}</p>
               <p>Gender: {data.gender}</p>
               <p>Status: {data.status}</p>
@@ -22,6 +23,7 @@ const Display = ({ data, type, visible, setVisible }) => {
             </>
           ) : (
             <>
+              <img src={`../images/r&m_loc${data.image}.png`} style={{width:'30%'}} alt="" />
               <p>Type: {data.type}</p>
               <p>Dimension: {data.dimension}</p>
               <p>Residents: {data.residents.length}</p>
