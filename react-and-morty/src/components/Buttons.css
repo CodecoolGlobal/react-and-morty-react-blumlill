@@ -38,4 +38,5 @@
 
 .buttons > button:disabled {
   background-color: rgb(29, 87, 82);
+  box-shadow: 5px 5px 5px rgb(121, 179, 13);
 }

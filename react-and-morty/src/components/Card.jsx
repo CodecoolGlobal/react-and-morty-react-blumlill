@@ -9,9 +9,19 @@ export default function Card({ data, type, setCurrentCard, setVisible }) {
       }}
     >
       <img src={source} alt={data.name}></img>
-      <p>Name: {data.name}</p>
-      {charater && <p>Species: {data.species}</p>}
-      {!charater && <p>Type: {data.type}</p>}
+      <div>
+        <p id="name">{data.name}</p>
+      </div>
+      {charater && (
+        <div>
+          <p>Species: {data.species}</p>
+        </div>
+      )}
+      {!charater && (
+        <div>
+          <p>Type: {data.type}</p>
+        </div>
+      )}
     </div>
   );
 }

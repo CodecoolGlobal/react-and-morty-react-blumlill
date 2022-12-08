@@ -17,13 +17,10 @@ const Display = ({ data, type, visible, setVisible }) => {
       }}
     >
       <div className="modal-view">
-        <p className="name">
-          {data.name.split('').join(' ')} {console.log(data.name.split(''))}{' '}
-          {console.log(data.name.split('').join(' '))}
-        </p>
+        <p className="name">{data.name}</p>
         {charater ? (
           <>
-            <img src={data.image} style={{ width: '30%' }} alt="" />
+            <img src={data.image} style={{ width: '350px' }} alt="" />
             <p>Species: {data.species}</p>
             <p>Gender: {data.gender}</p>
             <p>Status: {data.status}</p>
