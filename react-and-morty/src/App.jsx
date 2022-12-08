@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 import { mainUrls } from './api/dataRoutes';
-import Display from './Display';
+import Display from './components/Display';
 import List from './components/List';
 import Logo from './components/Logo';
 import Buttons from './components/Buttons';
@@ -68,14 +68,14 @@ function App() {
     setFetchType({ type: 'locations', page: 1 });
     setResults([]);
     setCurrentCard(null);
-    console.log('locClicked');
+    console.log(fetchType);
   };
 
   const charClicked = () => {
     setFetchType({ type: 'characters', page: 1 });
     setResults([]);
     setCurrentCard(null);
-    console.log('charClicked');
+    console.log(fetchType);
   };
 
   return (

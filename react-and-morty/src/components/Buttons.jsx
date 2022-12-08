@@ -9,7 +9,7 @@ const Buttons = (props) => {
         onClick={() => {
           charClicked();
         }}
-        className="characters"
+        className="characters" 
         type="submit"
         disabled={props.fetchtype.type === 'characters'}
       >
