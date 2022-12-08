@@ -8,6 +8,7 @@ import Buttons from './components/Buttons';
 import About from './components/About';
 import Pages from './components/Pages';
 import InfiniteScroll from './components/InfiniteScroll';
+import Loading from './components/Loading';
 
 function App() {
   const [info, setInfo] = useState(null);
@@ -34,6 +35,7 @@ function App() {
 
   function onPageChange(page) {
     setFetchType({ ...fetchType, page: page });
+    setResults([]);
   }
 
   function infiniteScroll() {
@@ -91,11 +93,11 @@ function App() {
         infinite={infinite}
         results={results}
       />
-
       <div ref={top}></div>
       {!infinite && info !== null && (
         <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} />
       )}
+      {infinite && <div className="replacer"></div>}
       {currentCard !== null && (
         <div>
           <Display data={currentCard} type={fetchType.type} visible={visible} setVisible={setVisible}></Display>
@@ -104,6 +106,7 @@ function App() {
       {results !== null && (
         <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard} setVisible={setVisible} />
       )}
+      {loading && <Loading />}
       {!infinite && info !== null && (
         <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} scrollTo={top.current} />
       )}
