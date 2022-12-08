@@ -21,6 +21,8 @@ body {
   grid-template-columns: 2fr 2fr 2fr 2fr;
   grid-template-rows: auto;
   background-color: rgb(81, 46, 95);
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .card {
