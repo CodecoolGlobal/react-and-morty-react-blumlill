@@ -104,7 +104,13 @@ function App() {
         </div>
       )}
       {results !== null && (
-        <List dataList={results} type={fetchType.type} setCurrentCard={setCurrentCard} setVisible={setVisible} />
+        <List
+          dataList={results}
+          type={fetchType.type}
+          setCurrentCard={setCurrentCard}
+          setVisible={setVisible}
+          className="list"
+        />
       )}
       {loading && <Loading />}
       {!infinite && info !== null && (
