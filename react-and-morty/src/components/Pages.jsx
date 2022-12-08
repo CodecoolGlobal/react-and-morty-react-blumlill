@@ -3,12 +3,12 @@ import './Pages.css';
 export default function Pages({ pageCount, currentPage, onPageChange, scrollTo }) {
   function pageTurn(page) {
     if (page !== currentPage) {
-      onPageChange(page);
       if (scrollTo) {
         const positionY = window.scrollY + scrollTo.getBoundingClientRect().top;
         console.log(positionY);
-        window.scrollTo({ top: positionY, behavior: 'smooth' });
+        window.scroll({ top: positionY, behavior: 'smooth' });
       }
+      onPageChange(page);
     }
   }
 

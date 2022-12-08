@@ -7,11 +7,20 @@
   background-color: rgb(118, 68, 138);
   display: flex;
   flex-direction: column;
-  /* height: 300px; */
-  justify-content: center;
+  height: 300px;
+  /* justify-content: center; */
   align-items: center;
+  padding-top: 150px;
 }
 
+.overlay {
+  position: absolute;
+  /* height: 100rem !important; */
+  width: 100%;
+  z-index: 2;
+  margin-left: -100px;
+  background-color: rgba(137, 97, 137, 0.444) !important;
+}
 .loading img {
   width: 130px;
   height: 130px;

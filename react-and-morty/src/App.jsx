@@ -103,16 +103,18 @@ function App() {
           <Display data={currentCard} type={fetchType.type} visible={visible} setVisible={setVisible}></Display>
         </div>
       )}
-      {results !== null && (!infinite ? !loading : true) && (
+      {results !== null && (
         <List
           dataList={results}
           type={fetchType.type}
           setCurrentCard={setCurrentCard}
           setVisible={setVisible}
           className="list"
+          loading={loading}
+          infinite={infinite}
         />
       )}
-      {loading && <Loading height={infinite ? '300' : '600'} />}
+      {loading && infinite && <Loading />}
       {!infinite && info !== null && (
         <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} scrollTo={top.current} />
       )}
