@@ -5,8 +5,9 @@ export default function Pages({ pageCount, currentPage, onPageChange, scrollTo }
     if (page !== currentPage) {
       onPageChange(page);
       if (scrollTo) {
-        const distanceY = scrollTo.getBoundingClientRect().y;
-        window.scrollBy({ top: distanceY, behavior: 'smooth' });
+        const positionY = window.scrollY + scrollTo.getBoundingClientRect().top;
+        console.log(positionY);
+        window.scrollTo({ top: positionY, behavior: 'smooth' });
       }
     }
   }

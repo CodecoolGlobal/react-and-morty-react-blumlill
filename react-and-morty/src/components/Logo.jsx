@@ -9,7 +9,6 @@ const Logo = (props) => {
           src="../images/rick-and-morty-31013.png"
           alt="Rick and Morty logo"
         />
-        {console.log('img shall be smaller: ' + props.small)}
       </a>
     </div>
   );

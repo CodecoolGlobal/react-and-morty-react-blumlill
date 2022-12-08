@@ -34,8 +34,8 @@ function App() {
   }, [fetchType]);
 
   function onPageChange(page) {
+    setLoading(true);
     setFetchType({ ...fetchType, page: page });
-    setResults([]);
   }
 
   function infiniteScroll() {
@@ -103,7 +103,7 @@ function App() {
           <Display data={currentCard} type={fetchType.type} visible={visible} setVisible={setVisible}></Display>
         </div>
       )}
-      {results !== null && (
+      {results !== null && (!infinite ? !loading : true) && (
         <List
           dataList={results}
           type={fetchType.type}
@@ -112,7 +112,7 @@ function App() {
           className="list"
         />
       )}
-      {loading && <Loading />}
+      {loading && <Loading height={infinite ? '300' : '600'} />}
       {!infinite && info !== null && (
         <Pages pageCount={info.pages} currentPage={fetchType.page} onPageChange={onPageChange} scrollTo={top.current} />
       )}

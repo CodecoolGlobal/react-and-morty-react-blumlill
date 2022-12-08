@@ -5,6 +5,8 @@
 
 body {
   font-family: RickAndMorty;
+  height: 100vh;
+  background-color: rgb(118, 68, 138);
 }
 
 .hidden {
@@ -29,6 +31,7 @@ body {
   height: 450px;
   display: flex;
   justify-content: center;
+  text-align: center;
   align-items: center;
   flex-flow: column;
   margin: 20px;
@@ -51,6 +54,7 @@ body {
 
 .card:hover {
   box-shadow: 5px 5px 5px rgb(121, 179, 13);
+  cursor: pointer;
 }
 @font-face {
   font-family: RickAndMorty;
